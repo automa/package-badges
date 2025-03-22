@@ -1,0 +1,55 @@
+name: Linting
+on: [pull_request]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: read
+    needs: [lockfile, lint]
+    steps:
+      - name: Wait for checks
+        uses: poseidon/wait-for-status-checks@v0.6.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          match_pattern: test
+  lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: 0.6
+      - name: Lockfile check
+        run: uv lock --check
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: 0.6
+      - name: Install dependencies
+        run: uv sync --frozen
+      - name: Lint check
+        run: uv run --frozen ruff check
+      - name: Lint fix check
+        run: |
+          uv run --frozen ruff check --fix
+          git diff --exit-code
+      - name: Formatting check
+        run: uv run --frozen ruff format --check
