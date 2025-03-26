@@ -1,14 +1,14 @@
 import time
 import uuid
 
-from opentelemetry.semconv._incubating.attributes.client_attributes import (
+from opentelemetry.semconv.attributes.client_attributes import (
     CLIENT_ADDRESS,
 )
-from opentelemetry.semconv._incubating.attributes.http_attributes import (
+from opentelemetry.semconv.attributes.http_attributes import (
     HTTP_REQUEST_METHOD,
     HTTP_RESPONSE_STATUS_CODE,
-    HTTP_URL,
 )
+from opentelemetry.semconv.attributes.url_attributes import URL_PATH
 from starlette.middleware.base import BaseHTTPMiddleware
 
 from ..telemetry import logger, meter
@@ -22,6 +22,8 @@ class TelemetryMiddleware(BaseHTTPMiddleware):
         id = str(uuid.uuid4())
         start = time.time()
 
+        request.state.request_id = id
+
         # TODO: We need a custom APIRoute to add the raw path to the request
         # https://github.com/encode/starlette/issues/685#issuecomment-550240999
         logger.info(
@@ -29,7 +31,7 @@ class TelemetryMiddleware(BaseHTTPMiddleware):
             extra={
                 "http.request.id": id,
                 HTTP_REQUEST_METHOD: request.method,
-                HTTP_URL: request.url.path,
+                URL_PATH: request.url.path,
                 CLIENT_ADDRESS: request.client.host,
             },
         )
@@ -38,7 +40,7 @@ class TelemetryMiddleware(BaseHTTPMiddleware):
             1,
             {
                 HTTP_REQUEST_METHOD: request.method,
-                HTTP_URL: request.url.path,
+                URL_PATH: request.url.path,
             },
         )
 
@@ -61,7 +63,7 @@ class TelemetryMiddleware(BaseHTTPMiddleware):
                 response_time,
                 {
                     HTTP_REQUEST_METHOD: request.method,
-                    HTTP_URL: request.url.path,
+                    URL_PATH: request.url.path,
                 },
             )
 

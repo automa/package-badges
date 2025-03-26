@@ -4,9 +4,9 @@ on:
     branches: [master]
     paths:
       - .github/workflows/test.yml
-      - src/**
-      - test/**
-      - pnpm-lock.yaml
+      - app/**
+      - tests/**
+      - uv.lock
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: uv sync --frozen
       - name: Run tests
-        run: uv run pytest --cov=app --cov-report=xml
+        run: uv run --frozen pytest --cov=app --cov-report=xml
       - name: Upload coverage
         uses: codecov/codecov-action@v4
         with:

@@ -39,6 +39,15 @@ wheels = [
 ]
 
 [[package]]
+name = "automa-bot-sdk"
+version = "0.0.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/56/7d/b5ac3069887ff5259b2973fa4fbb9b1a2bd4578885c025becb7212a35970/automa_bot_sdk-0.0.2.tar.gz", hash = "sha256:ff9d5e5e2d6c4ecfcab9d70a52f13bfe9977aad290610f91f116bd915e32fc23", size = 1897 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/2a/0c/ba88dee533e6fdb0f631c7c546b47c3257fb983d04c50ccb756dd6898e75/automa_bot_sdk-0.0.2-py3-none-any.whl", hash = "sha256:04ded97d4d2872c6e4aff5ebb3fb8f67788c4faf3f7a5575cbfd14ecdb09e3f5", size = 1796 },
+]
+
+[[package]]
 name = "certifi"
 version = "2025.1.31"
 source = { registry = "https://pypi.org/simple" }
@@ -482,6 +491,7 @@ name = "package-badges"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "automa-bot-sdk" },
     { name = "fastapi" },
     { name = "fastapi-cli" },
     { name = "fastapi-file-router" },
@@ -505,6 +515,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "automa-bot-sdk", specifier = "~=0.0.2" },
     { name = "fastapi", specifier = "~=0.115.11" },
     { name = "fastapi-cli", specifier = "~=0.0.7" },
     { name = "fastapi-file-router", specifier = ">=0.1.17" },
