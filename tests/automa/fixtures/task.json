@@ -1,0 +1,7 @@
+{
+  "task": {
+    "id": 1,
+    "token": "abcdef",
+    "title": "Running package-badges on monorepo"
+  }
+}
