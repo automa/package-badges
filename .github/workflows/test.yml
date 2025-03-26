@@ -1,0 +1,35 @@
+name: Testing
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - .github/workflows/test.yml
+      - src/**
+      - test/**
+      - pnpm-lock.yaml
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: 0.6
+      - name: Install dependencies
+        run: uv sync --frozen
+      - name: Run tests
+        run: uv run pytest --cov=app --cov-report=xml
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage.xml
