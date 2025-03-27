@@ -29,5 +29,18 @@ async def automa_hook(request: Request):
         return Response(status_code=401)
 
     # base_url = request.headers.get("x-automa-server-host")
+    # task = json.loads(payload)
+
+    # # Download code
+    # folder = await download(task, { base_url })
+
+    # try:
+    #     await update(folder)
+
+    #     # Propose code
+    #     await propose(task, { base_url })
+    # finally:
+    #     # Clean up
+    #     cleanup(task)
 
     return Response(status_code=200)
