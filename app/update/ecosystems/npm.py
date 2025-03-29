@@ -24,6 +24,7 @@ class NPM(Ecosystem):
             version = package_data.get("version")
             private = package_data.get("private")
 
+            # Check if the package is publishable
             if name and version and not private:
                 return Package(
                     path=root,

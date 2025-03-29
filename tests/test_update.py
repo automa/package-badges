@@ -61,5 +61,45 @@ def test_npm_private(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssert
     run_fixture(temp_dir, "npm_private", snapshot)
 
 
+def test_cargo(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+    run_fixture(temp_dir, "cargo", snapshot)
+
+
+def test_cargo_private(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+    run_fixture(temp_dir, "cargo_private", snapshot)
+
+
+def test_cargo_publish_empty(
+    temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion
+):
+    run_fixture(temp_dir, "cargo_publish_empty", snapshot)
+
+
+def test_cargo_publish_crates_io(
+    temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion
+):
+    run_fixture(temp_dir, "cargo_publish_crates_io", snapshot)
+
+
+def test_cargo_publish_registry(
+    temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion
+):
+    run_fixture(temp_dir, "cargo_publish_registry", snapshot)
+
+
+def test_cargo_publish_both_registries(
+    temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion
+):
+    run_fixture(temp_dir, "cargo_publish_both_registries", snapshot)
+
+
 def test_monorepo(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "monorepo", snapshot)
+
+
+def test_no_md_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+    run_fixture(temp_dir, "no_md_heading", snapshot)
+
+
+def test_md_h3_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+    run_fixture(temp_dir, "md_h3_heading", snapshot)

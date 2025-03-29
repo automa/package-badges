@@ -1,0 +1,4 @@
+[package]
+name    = "test-cargo-crate"
+publish = ["crates-io", "my-registry"]
+version = "0.1.0"

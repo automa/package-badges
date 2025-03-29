@@ -20,18 +20,28 @@ class Cargo(Ecosystem):
             if not cargo_data:
                 return None
 
-            package_section = cargo_data.get("package", {})
+            package_section = cargo_data.get("package")
 
-            # TODO: Having no version means private
-            # TODO: Having non-standard publish means private
-            # TODO: Having publish = false means private
+            if not package_section:
+                return None
 
-            # Only process if it's a package, not just a workspace
-            if package_section:
+            name = package_section.get("name")
+            version = package_section.get("version")
+            publish = package_section.get("publish", True)
+
+            # Check if the package is publishable
+            if (
+                name
+                and version
+                and (
+                    (isinstance(publish, bool) and publish)
+                    or (isinstance(publish, list) and "crates-io" in publish)
+                )
+            ):
                 return Package(
                     path=root,
-                    name=package_section.get("name", ""),
-                    version=package_section.get("version", ""),
+                    name=name,
+                    version=version,
                 )
         except (tomllib.TOMLDecodeError, IOError) as e:
             logging.info(f"Error reading {manifest_path}: {e}")
@@ -53,6 +63,7 @@ class Cargo(Ecosystem):
                 image_url="https://img.shields.io/badge/docs.rs-latest-blue",
                 link_url=f"https://docs.rs/{name}",
             ),
+            # TODO: Crate downloads badge
             Badge(
                 title="Crates.io license",
                 image_url=f"https://img.shields.io/crates/l/{name}",
