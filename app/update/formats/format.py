@@ -24,10 +24,10 @@ class Format:
 
     def modify_content(self, content: str, badges: List[Badge]) -> str:
         """Modify the content to include the badges."""
+        # TODO: Check if badges already exist in the README
+
         if len(badges) == 0:
             return content
-
-        # TODO: Check if badges already exist in the README
 
         rendered_badges = [self.render_badge(badge) for badge in badges]
         badge_line = self.join_badges(rendered_badges)

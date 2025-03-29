@@ -1,3 +1,4 @@
+import re
 from typing import List
 
 from ..ecosystems.ecosystem import Badge
@@ -19,8 +20,15 @@ class MDFormat(Format):
         return "\n".join(badge_strings)
 
     def find_insertion_point(self, content_lines: List[str]) -> int:
-        """Find where to insert badges - after the title."""
+        """
+        Find where to insert badges - after the first heading of any level,
+        or at the beginning if no heading is found.
+        """
+        # Regex pattern for Markdown headings: 1-6 # characters followed by a space and then text
+        heading_pattern = re.compile(r"^(#{1,6})\s+(.+)$")
+
         for i, line in enumerate(content_lines):
-            if line.startswith("# "):
+            if heading_pattern.match(line.strip()):
                 return i + 1
+
         return 0  # If no heading found, insert at the beginning

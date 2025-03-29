@@ -1,11 +1,172 @@
 # serializer version: 1
+# name: test_cargo
+  dict({
+    'Cargo.toml': '''
+      [package]
+      name    = "test-cargo-crate"
+      version = "0.1.0"
+  
+    ''',
+    'README.md': '''
+      # Test Cargo Crate
+      
+      [![Crates.io version](https://img.shields.io/crates/v/test-cargo-crate)](https://crates.io/crates/test-cargo-crate)
+      [![Docs.rs documentation](https://img.shields.io/badge/docs.rs-latest-blue)](https://docs.rs/test-cargo-crate)
+      [![Crates.io license](https://img.shields.io/crates/l/test-cargo-crate)](https://crates.io/crates/test-cargo-crate)
+      
+      
+      This is a test README for a Cargo crate.
+  
+    ''',
+  })
+# ---
+# name: test_cargo_private
+  dict({
+    'Cargo.toml': '''
+      [package]
+      name    = "test-cargo-crate"
+      publish = false
+      version = "0.1.0"
+  
+    ''',
+    'README.md': '''
+      # Test Cargo Crate
+      
+      This is a test README for a Cargo crate.
+  
+    ''',
+  })
+# ---
+# name: test_cargo_publish_both_registries
+  dict({
+    'Cargo.toml': '''
+      [package]
+      name    = "test-cargo-crate"
+      publish = ["crates-io", "my-registry"]
+      version = "0.1.0"
+  
+    ''',
+    'README.md': '''
+      # Test Cargo Crate
+      
+      [![Crates.io version](https://img.shields.io/crates/v/test-cargo-crate)](https://crates.io/crates/test-cargo-crate)
+      [![Docs.rs documentation](https://img.shields.io/badge/docs.rs-latest-blue)](https://docs.rs/test-cargo-crate)
+      [![Crates.io license](https://img.shields.io/crates/l/test-cargo-crate)](https://crates.io/crates/test-cargo-crate)
+      
+      
+      This is a test README for a Cargo crate.
+  
+    ''',
+  })
+# ---
+# name: test_cargo_publish_crates_io
+  dict({
+    'Cargo.toml': '''
+      [package]
+      name    = "test-cargo-crate"
+      publish = ["crates-io"]
+      version = "0.1.0"
+  
+    ''',
+    'README.md': '''
+      # Test Cargo Crate
+      
+      [![Crates.io version](https://img.shields.io/crates/v/test-cargo-crate)](https://crates.io/crates/test-cargo-crate)
+      [![Docs.rs documentation](https://img.shields.io/badge/docs.rs-latest-blue)](https://docs.rs/test-cargo-crate)
+      [![Crates.io license](https://img.shields.io/crates/l/test-cargo-crate)](https://crates.io/crates/test-cargo-crate)
+      
+      
+      This is a test README for a Cargo crate.
+  
+    ''',
+  })
+# ---
+# name: test_cargo_publish_empty
+  dict({
+    'Cargo.toml': '''
+      [package]
+      name    = "test-cargo-crate"
+      publish = []
+      version = "0.1.0"
+  
+    ''',
+    'README.md': '''
+      # Test Cargo Crate
+      
+      This is a test README for a Cargo crate.
+  
+    ''',
+  })
+# ---
+# name: test_cargo_publish_registry
+  dict({
+    'Cargo.toml': '''
+      [package]
+      name    = "test-cargo-crate"
+      publish = ["my-registry"]
+      version = "0.1.0"
+  
+    ''',
+    'README.md': '''
+      # Test Cargo Crate
+      
+      This is a test README for a Cargo crate.
+  
+    ''',
+  })
+# ---
 # name: test_empty
   dict({
     '.gitkeep': '',
   })
 # ---
+# name: test_md_h3_heading
+  dict({
+    'README.md': '''
+      ### Test NPM Package
+      
+      [![NPM version](https://img.shields.io/npm/v/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
+      [![NPM downloads](https://img.shields.io/npm/dm/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
+      [![NPM license](https://img.shields.io/npm/l/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
+      
+      
+      This is a test README for an NPM package.
+      
+  
+    ''',
+    'package.json': '''
+      {
+        "name": "test-npm-package",
+        "version": "1.0.0"
+      }
+  
+    ''',
+  })
+# ---
 # name: test_monorepo
   dict({
+    'Cargo.toml': '''
+      [workspace]
+      members = []
+  
+    ''',
+    'crates/cargo/Cargo.toml': '''
+      [package]
+      name    = "test-cargo-crate"
+      version = "0.1.0"
+  
+    ''',
+    'crates/cargo/README.md': '''
+      # Test Cargo Crate
+      
+      [![Crates.io version](https://img.shields.io/crates/v/test-cargo-crate)](https://crates.io/crates/test-cargo-crate)
+      [![Docs.rs documentation](https://img.shields.io/badge/docs.rs-latest-blue)](https://docs.rs/test-cargo-crate)
+      [![Crates.io license](https://img.shields.io/crates/l/test-cargo-crate)](https://crates.io/crates/test-cargo-crate)
+      
+      
+      This is a test README for a Cargo crate.
+  
+    ''',
     'package.json': '''
       {
         "name": "monorepo"
@@ -28,6 +189,26 @@
   
     ''',
     'packages/npm/package.json': '''
+      {
+        "name": "test-npm-package",
+        "version": "1.0.0"
+      }
+  
+    ''',
+  })
+# ---
+# name: test_no_md_heading
+  dict({
+    'README.md': '''
+      
+      [![NPM version](https://img.shields.io/npm/v/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
+      [![NPM downloads](https://img.shields.io/npm/dm/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
+      [![NPM license](https://img.shields.io/npm/l/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
+      
+      This is a test README for an NPM package.
+  
+    ''',
+    'package.json': '''
       {
         "name": "test-npm-package",
         "version": "1.0.0"
