@@ -1,5 +1,7 @@
+import json
 import logging
 
+from automa.bot import AsyncAutoma
 from automa.bot.webhook import verify_webhook
 from fastapi import APIRouter, Request, Response
 from opentelemetry.semconv.attributes.http_attributes import (
@@ -7,6 +9,7 @@ from opentelemetry.semconv.attributes.http_attributes import (
 )
 
 from ...env import env
+from ...update import update
 
 router = APIRouter(tags=["automa"])
 
@@ -28,19 +31,29 @@ async def automa_hook(request: Request):
 
         return Response(status_code=401)
 
-    # base_url = request.headers.get("x-automa-server-host")
-    # task = json.loads(payload)
+    base_url = request.headers.get("x-automa-server-host")
+    body = json.loads(payload)
 
-    # # Download code
-    # folder = await download(task, { base_url })
+    # Create client with base URL
+    automa = AsyncAutoma(base_url=base_url)
 
-    # try:
-    #     await update(folder)
+    # Download code
+    folder = await automa.code.download(body)
 
-    #     # Propose code
-    #     await propose(task, { base_url })
-    # finally:
-    #     # Clean up
-    #     cleanup(task)
+    try:
+        update(folder)
+
+        # Propose code
+        await automa.code.propose(
+            {
+                **body,
+                "proposal": {
+                    "message": "Added package badges",
+                },
+            }
+        )
+    finally:
+        # Clean up
+        await automa.code.cleanup(body)
 
     return Response(status_code=200)
