@@ -93,6 +93,14 @@ def test_cargo_publish_both_registries(
     run_fixture(temp_dir, "cargo_publish_both_registries", snapshot)
 
 
+def test_pypi(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+    run_fixture(temp_dir, "pypi", snapshot)
+
+
+def test_pypi_private(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+    run_fixture(temp_dir, "pypi_private", snapshot)
+
+
 def test_monorepo(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "monorepo", snapshot)
 
@@ -103,3 +111,7 @@ def test_no_md_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAsse
 
 def test_md_h3_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "md_h3_heading", snapshot)
+
+
+def test_existing_badge(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+    run_fixture(temp_dir, "existing_badge", snapshot)
