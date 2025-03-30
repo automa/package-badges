@@ -1,0 +1,4 @@
+[project]
+classifiers = ["Private :: Do Not Upload"]
+name        = "test-pypi-package"
+version     = "0.1.0"

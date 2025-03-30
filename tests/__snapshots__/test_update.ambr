@@ -120,14 +120,40 @@
     '.gitkeep': '',
   })
 # ---
+# name: test_existing_badge
+  dict({
+    'README.md': '''
+      # Test NPM Package
+      
+      [![NPM license](https://img.shields.io/npm/l/test-npm-package)](https://npmjs.com/package/test-npm-package)
+      [![NPM downloads](https://img.shields.io/npm/dm/test-npm-package)](https://npmjs.com/package/test-npm-package)
+      
+      
+      [![NPM version][badge-img]][badge-url]
+      
+      This is a test README for an NPM package.
+      
+      [badge-img]: https://img.shields.io/npm/v/test-npm-package
+      [badge-url]: https://npmjs.com/package/test-npm-package
+  
+    ''',
+    'package.json': '''
+      {
+        "name": "test-npm-package",
+        "version": "1.0.0"
+      }
+  
+    ''',
+  })
+# ---
 # name: test_md_h3_heading
   dict({
     'README.md': '''
       ### Test NPM Package
       
-      [![NPM version](https://img.shields.io/npm/v/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
-      [![NPM downloads](https://img.shields.io/npm/dm/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
-      [![NPM license](https://img.shields.io/npm/l/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
+      [![NPM version](https://img.shields.io/npm/v/test-npm-package)](https://npmjs.com/package/test-npm-package)
+      [![NPM license](https://img.shields.io/npm/l/test-npm-package)](https://npmjs.com/package/test-npm-package)
+      [![NPM downloads](https://img.shields.io/npm/dm/test-npm-package)](https://npmjs.com/package/test-npm-package)
       
       
       This is a test README for an NPM package.
@@ -148,6 +174,10 @@
     'Cargo.toml': '''
       [workspace]
       members = []
+  
+    ''',
+    'README.md': '''
+      # monorepo
   
     ''',
     'crates/cargo/Cargo.toml': '''
@@ -173,16 +203,12 @@
       }
   
     ''',
-    'packages/README.md': '''
-      # monorepo
-  
-    ''',
     'packages/npm/README.md': '''
       # Test NPM Package
       
-      [![NPM version](https://img.shields.io/npm/v/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
-      [![NPM downloads](https://img.shields.io/npm/dm/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
-      [![NPM license](https://img.shields.io/npm/l/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
+      [![NPM version](https://img.shields.io/npm/v/test-npm-package)](https://npmjs.com/package/test-npm-package)
+      [![NPM license](https://img.shields.io/npm/l/test-npm-package)](https://npmjs.com/package/test-npm-package)
+      [![NPM downloads](https://img.shields.io/npm/dm/test-npm-package)](https://npmjs.com/package/test-npm-package)
       
       
       This is a test README for an NPM package.
@@ -195,15 +221,37 @@
       }
   
     ''',
+    'packages/python/README.md': '''
+      # Test PyPI Package
+      
+      [![PyPI version](https://img.shields.io/pypi/v/test-pypi-package)](https://pypi.org/project/test-pypi-package/)
+      [![PyPI license](https://img.shields.io/pypi/l/test-pypi-package)](https://pypi.org/project/test-pypi-package/)
+      [![PyPI downloads](https://img.shields.io/pypi/dm/test-pypi-package)](https://pypi.org/project/test-pypi-package/)
+      
+      
+      This is a test README for a PyPI package
+  
+    ''',
+    'packages/python/pyproject.toml': '''
+      [project]
+      name    = "test-pypi-package"
+      version = "0.1.0"
+  
+    ''',
+    'pyproject.toml': '''
+      [tool.uv.workspace]
+      members = []
+  
+    ''',
   })
 # ---
 # name: test_no_md_heading
   dict({
     'README.md': '''
       
-      [![NPM version](https://img.shields.io/npm/v/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
-      [![NPM downloads](https://img.shields.io/npm/dm/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
-      [![NPM license](https://img.shields.io/npm/l/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
+      [![NPM version](https://img.shields.io/npm/v/test-npm-package)](https://npmjs.com/package/test-npm-package)
+      [![NPM license](https://img.shields.io/npm/l/test-npm-package)](https://npmjs.com/package/test-npm-package)
+      [![NPM downloads](https://img.shields.io/npm/dm/test-npm-package)](https://npmjs.com/package/test-npm-package)
       
       This is a test README for an NPM package.
   
@@ -233,9 +281,9 @@
     'README.md': '''
       # Test NPM Package
       
-      [![NPM version](https://img.shields.io/npm/v/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
-      [![NPM downloads](https://img.shields.io/npm/dm/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
-      [![NPM license](https://img.shields.io/npm/l/test-npm-package)](https://www.npmjs.com/package/test-npm-package)
+      [![NPM version](https://img.shields.io/npm/v/test-npm-package)](https://npmjs.com/package/test-npm-package)
+      [![NPM license](https://img.shields.io/npm/l/test-npm-package)](https://npmjs.com/package/test-npm-package)
+      [![NPM downloads](https://img.shields.io/npm/dm/test-npm-package)](https://npmjs.com/package/test-npm-package)
       
       
       This is a test README for an NPM package.
@@ -264,6 +312,44 @@
         "version": "1.0.0",
         "private": true
       }
+  
+    ''',
+  })
+# ---
+# name: test_pypi
+  dict({
+    'README.md': '''
+      # Test PyPI Package
+      
+      [![PyPI version](https://img.shields.io/pypi/v/test-pypi-package)](https://pypi.org/project/test-pypi-package/)
+      [![PyPI license](https://img.shields.io/pypi/l/test-pypi-package)](https://pypi.org/project/test-pypi-package/)
+      [![PyPI downloads](https://img.shields.io/pypi/dm/test-pypi-package)](https://pypi.org/project/test-pypi-package/)
+      
+      
+      This is a test README for a PyPI package
+  
+    ''',
+    'pyproject.toml': '''
+      [project]
+      name    = "test-pypi-package"
+      version = "0.1.0"
+  
+    ''',
+  })
+# ---
+# name: test_pypi_private
+  dict({
+    'README.md': '''
+      # Test PyPI Package
+      
+      This is a test README for a PyPI package
+  
+    ''',
+    'pyproject.toml': '''
+      [project]
+      classifiers = ["Private :: Do Not Upload"]
+      name        = "test-pypi-package"
+      version     = "0.1.0"
   
     ''',
   })

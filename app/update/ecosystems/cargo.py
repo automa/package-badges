@@ -7,7 +7,7 @@ from .ecosystem import Badge, Ecosystem, Package
 
 
 class Cargo(Ecosystem):
-    """Package manager for Rust/Cargo."""
+    """Package manager Cargo for Rust."""
 
     def __init__(self):
         super().__init__("cargo", "Cargo.toml")
@@ -63,10 +63,10 @@ class Cargo(Ecosystem):
                 image_url="https://img.shields.io/badge/docs.rs-latest-blue",
                 link_url=f"https://docs.rs/{name}",
             ),
-            # TODO: Crate downloads badge
             Badge(
                 title="Crates.io license",
                 image_url=f"https://img.shields.io/crates/l/{name}",
                 link_url=f"https://crates.io/crates/{name}",
             ),
+            # TODO: Crate downloads badge
         ]

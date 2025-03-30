@@ -24,15 +24,17 @@ class Format:
 
     def modify_content(self, content: str, badges: List[Badge]) -> str:
         """Modify the content to include the badges."""
-        # TODO: Check if badges already exist in the README
+        # Filter out badges that already exist in the content
+        new_badges = [badge for badge in badges if badge.image_url not in content]
 
-        if len(badges) == 0:
+        if len(new_badges) == 0:
             return content
 
-        rendered_badges = [self.render_badge(badge) for badge in badges]
+        rendered_badges = [self.render_badge(badge) for badge in new_badges]
         badge_line = self.join_badges(rendered_badges)
 
         lines = content.split("\n")
         insert_index = self.find_insertion_point(lines)
         lines.insert(insert_index, "\n" + badge_line + "\n")
+
         return "\n".join(lines)

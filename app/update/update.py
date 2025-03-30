@@ -6,12 +6,14 @@ from typing import List, Optional
 from .ecosystems.cargo import Cargo
 from .ecosystems.ecosystem import Ecosystem, Package
 from .ecosystems.npm import NPM
+from .ecosystems.pypi import PyPI
 from .formats.md import MDFormat
 from .formats.rst import RSTFormat
 
 ecosystems = [
     NPM(),
     Cargo(),
+    PyPI(),
 ]
 
 formats = [

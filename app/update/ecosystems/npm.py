@@ -7,7 +7,7 @@ from .ecosystem import Badge, Ecosystem, Package
 
 
 class NPM(Ecosystem):
-    """Package manager for Node.js."""
+    """Package manager NPM for Node.js."""
 
     def __init__(self):
         super().__init__("npm", "package.json")
@@ -44,16 +44,16 @@ class NPM(Ecosystem):
             Badge(
                 title="NPM version",
                 image_url=f"https://img.shields.io/npm/v/{name}",
-                link_url=f"https://www.npmjs.com/package/{name}",
-            ),
-            Badge(
-                title="NPM downloads",
-                image_url=f"https://img.shields.io/npm/dm/{name}",
-                link_url=f"https://www.npmjs.com/package/{name}",
+                link_url=f"https://npmjs.com/package/{name}",
             ),
             Badge(
                 title="NPM license",
                 image_url=f"https://img.shields.io/npm/l/{name}",
-                link_url=f"https://www.npmjs.com/package/{name}",
+                link_url=f"https://npmjs.com/package/{name}",
+            ),
+            Badge(
+                title="NPM downloads",
+                image_url=f"https://img.shields.io/npm/dm/{name}",
+                link_url=f"https://npmjs.com/package/{name}",
             ),
         ]
