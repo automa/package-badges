@@ -1,6 +1,6 @@
 import os
-import shutil
 from pathlib import Path
+from shutil import copytree
 from tempfile import TemporaryDirectory
 from typing import Dict
 
@@ -26,7 +26,7 @@ def run_fixture(
     fixture_dir = Path(temp_dir) / fixture_name
 
     if os.path.isdir(source):
-        shutil.copytree(source, fixture_dir)
+        copytree(source, fixture_dir)
 
     # Run the update function
     update(fixture_dir)
@@ -111,6 +111,10 @@ def test_no_md_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAsse
 
 def test_md_h3_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "md_h3_heading", snapshot)
+
+
+def test_rst(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+    run_fixture(temp_dir, "rst", snapshot)
 
 
 def test_existing_badge(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):

@@ -354,3 +354,33 @@
     ''',
   })
 # ---
+# name: test_rst
+  dict({
+    'README.rst': '''
+      Test PyPI Package
+      =================
+      
+      .. image:: https://img.shields.io/pypi/v/test-pypi-package
+         :target: https://pypi.org/project/test-pypi-package/
+         :alt: PyPI version
+      
+      .. image:: https://img.shields.io/pypi/l/test-pypi-package
+         :target: https://pypi.org/project/test-pypi-package/
+         :alt: PyPI license
+      
+      .. image:: https://img.shields.io/pypi/dm/test-pypi-package
+         :target: https://pypi.org/project/test-pypi-package/
+         :alt: PyPI downloads
+      
+      
+      This is a test README for a PyPI package
+  
+    ''',
+    'pyproject.toml': '''
+      [project]
+      name    = "test-pypi-package"
+      version = "0.1.0"
+  
+    ''',
+  })
+# ---
