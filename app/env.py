@@ -13,8 +13,8 @@ environment = os.getenv("PYTHON_ENV", "development")
 isTest = environment == "test"
 isProduction = not isTest and environment != "development"
 
-product = "package-badges"
-service = "bot"
+product = "bots"
+service = "package-badges"
 version = pyproject_data["project"]["version"]
 
 
