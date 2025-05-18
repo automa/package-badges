@@ -20,15 +20,14 @@ class RSTFormat(Format):
 
     def find_insertion_point(self, content_lines: List[str]) -> int:
         """Find where to insert badges - after the title underline."""
-        # Default after potential title underline
-        insert_index = 2
-
         # Look for title underline pattern in first few lines
+        # NOTE: We start with 1, in order to ignore the top line of h1
         for i in range(1, min(5, len(content_lines))):
-            if all(c == "=" for c in content_lines[i]) or all(
-                c == "-" for c in content_lines[i]
-            ):
-                insert_index = i + 1
-                break
+            line = content_lines[i]
 
-        return insert_index
+            if line != "" and (
+                all(c == "=" for c in line) or all(c == "-" for c in line)
+            ):
+                return i + 1
+
+        return 0

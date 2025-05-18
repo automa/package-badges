@@ -35,6 +35,15 @@ class Format:
 
         lines = content.split("\n")
         insert_index = self.find_insertion_point(lines)
-        lines.insert(insert_index, "\n" + badge_line + "\n")
+
+        lines.insert(insert_index, badge_line)
+
+        # Ensure there's a newline after the inserted badges
+        if lines[insert_index + 1] != "":
+            lines.insert(insert_index + 1, "")
+
+        # Ensure there's a newline before the badges
+        if insert_index and lines[insert_index - 1] != "":
+            lines.insert(insert_index, "")
 
         return "\n".join(lines)
