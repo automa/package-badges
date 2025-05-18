@@ -105,8 +105,12 @@ def test_monorepo(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion
     run_fixture(temp_dir, "monorepo", snapshot)
 
 
-def test_no_md_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
-    run_fixture(temp_dir, "no_md_heading", snapshot)
+def test_md_empty(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+    run_fixture(temp_dir, "md_empty", snapshot)
+
+
+def test_md_no_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+    run_fixture(temp_dir, "md_no_heading", snapshot)
 
 
 def test_md_h3_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
@@ -115,6 +119,22 @@ def test_md_h3_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAsse
 
 def test_rst(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "rst", snapshot)
+
+
+def test_rst_empty(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+    run_fixture(temp_dir, "rst_empty", snapshot)
+
+
+def test_rst_no_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+    run_fixture(temp_dir, "rst_no_heading", snapshot)
+
+
+def test_rst_h1_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+    run_fixture(temp_dir, "rst_h1_heading", snapshot)
+
+
+def test_rst_h3_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+    run_fixture(temp_dir, "rst_h3_heading", snapshot)
 
 
 def test_existing_badge(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):

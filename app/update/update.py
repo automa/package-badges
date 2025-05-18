@@ -67,9 +67,6 @@ def modify_readme(ecosystem: Ecosystem, package: Package, readme_path: Path):
         with open(readme_path, "r") as f:
             content = f.read()
 
-        if not content:
-            return
-
         # Get badges from the ecosystem
         badges = ecosystem.badges(package)
 
