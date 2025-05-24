@@ -78,8 +78,7 @@ def initTelemetry():
     metric_readers = []
 
     if not isTest:
-        if isProduction:
-            metric_readers.append(PeriodicExportingMetricReader(OTLPMetricExporter()))
+        metric_readers.append(PeriodicExportingMetricReader(OTLPMetricExporter()))
 
     meter_provider = MeterProvider(resource=resource, metric_readers=metric_readers)
 
