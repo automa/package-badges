@@ -16,7 +16,8 @@ router = APIRouter(tags=["automa"])
 
 @router.post("")
 async def automa_hook(request: Request):
-    signature = request.headers.get("x-automa-signature")
+    id = request.headers.get("webhook-id")
+    signature = request.headers.get("webhook-signature")
     payload = (await request.body()).decode("utf-8")
 
     # Verify request
@@ -25,7 +26,8 @@ async def automa_hook(request: Request):
             "Invalid signature",
             extra={
                 "http.request.id": request.state.request_id,
-                f"{HTTP_REQUEST_HEADER_TEMPLATE}.x-automa-signature": signature,
+                f"{HTTP_REQUEST_HEADER_TEMPLATE}.webhook-id": id,
+                f"{HTTP_REQUEST_HEADER_TEMPLATE}.webhook-signature": signature,
             },
         )
 
@@ -38,7 +40,7 @@ async def automa_hook(request: Request):
     automa = AsyncAutoma(base_url=base_url)
 
     # Download code
-    folder = await automa.code.download(body)
+    folder = await automa.code.download(body["data"])
 
     try:
         update(folder)
@@ -46,7 +48,7 @@ async def automa_hook(request: Request):
         # Propose code
         await automa.code.propose(
             {
-                **body,
+                **body["data"],
                 "proposal": {
                     "message": "Added package badges",
                 },
@@ -54,6 +56,6 @@ async def automa_hook(request: Request):
         )
     finally:
         # Clean up
-        await automa.code.cleanup(body)
+        await automa.code.cleanup(body["data"])
 
     return Response(status_code=200)

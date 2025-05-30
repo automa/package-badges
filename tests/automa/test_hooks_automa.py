@@ -19,8 +19,8 @@ def call_with_fixture(client, filename):
         "/hooks/automa",
         content=fixture.encode(),
         headers={
+            "webhook-signature": signature,
             "x-automa-server-host": "https://api.automa.app",
-            "x-automa-signature": signature,
         },
     )
 
@@ -38,9 +38,13 @@ def test_invalid_signature(client, signature):
     headers = {}
 
     if signature:
-        headers["x-automa-signature"] = signature
+        headers["webhook-signature"] = signature
 
-    response = client.post("/hooks/automa", content=b"{}", headers=headers)
+    response = client.post(
+        "/hooks/automa",
+        content=b'{ "id": "whmsg_1", "timestamp": "2025-05-30T09:30:06.261Z" }',
+        headers=headers,
+    )
 
     assert response.status_code == 401
 
