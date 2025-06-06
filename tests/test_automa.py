@@ -2,12 +2,13 @@ from pathlib import Path
 from unittest.mock import patch
 
 import pytest
+from automa.bot import CodeFolder
 from automa.bot.webhook import generate_webhook_signature
 
 from app.env import env
 
 fixtures = Path(__file__).parent / "fixtures"
-fixture_code = fixtures / "code"
+fixture_code = CodeFolder(fixtures / "code")
 
 
 def call_with_fixture(client, filename):
@@ -82,7 +83,7 @@ def test_valid_signature(download_mock, propose_mock, cleanup_mock, client):
                 "token": "abcdef",
                 "title": "Running package-badges on monorepo",
             },
-            "proposal": {"message": "Added package badges"},
+            "proposal": {"title": "Added package badges"},
         }
     )
 
@@ -159,7 +160,7 @@ def test_propose_error(download_mock, propose_mock, cleanup_mock, client):
                 "token": "abcdef",
                 "title": "Running package-badges on monorepo",
             },
-            "proposal": {"message": "Added package badges"},
+            "proposal": {"title": "Added package badges"},
         }
     )
 

@@ -43,14 +43,14 @@ async def automa_hook(request: Request):
     folder = await automa.code.download(body["data"])
 
     try:
-        update(folder)
+        update(folder.path)
 
         # Propose code
         await automa.code.propose(
             {
                 **body["data"],
                 "proposal": {
-                    "message": "Added package badges",
+                    "title": "Added package badges",
                 },
             }
         )
