@@ -12,7 +12,7 @@ class NPM(Ecosystem):
     def __init__(self):
         super().__init__("npm", "package.json")
 
-    def parse(self, root: str, manifest_path: Path) -> Optional[Package]:
+    def _parse(self, root: str, manifest_path: Path) -> Optional[Package]:
         try:
             with open(manifest_path, "r") as f:
                 package_data = json.load(f)
