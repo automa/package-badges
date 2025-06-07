@@ -2,12 +2,35 @@ from pathlib import Path
 from unittest.mock import patch
 
 import pytest
+from automa.bot import CodeFolder
 from automa.bot.webhook import generate_webhook_signature
 
 from app.env import env
+from app.update.ecosystems.ecosystem import Package
 
 fixtures = Path(__file__).parent / "fixtures"
-fixture_code = fixtures / "code"
+fixture_code = CodeFolder(fixtures / "code")
+
+cargo_pkg_fixture = Package(
+    path=".",
+    name="pkg1",
+    version="1.0.0",
+)
+cargo_pkg_fixture.ecosystem = "cargo"
+
+npm_pkg_fixture = Package(
+    path=".",
+    name="pkg2",
+    version="1.0.0",
+)
+npm_pkg_fixture.ecosystem = "npm"
+
+pypi_pkg_fixture = Package(
+    path=".",
+    name="pkg3",
+    version="1.0.0",
+)
+pypi_pkg_fixture.ecosystem = "pypi"
 
 
 def call_with_fixture(client, filename):
@@ -82,7 +105,7 @@ def test_valid_signature(download_mock, propose_mock, cleanup_mock, client):
                 "token": "abcdef",
                 "title": "Running package-badges on monorepo",
             },
-            "proposal": {"message": "Added package badges"},
+            "proposal": {"title": "Added package badges"},
         }
     )
 
@@ -159,7 +182,7 @@ def test_propose_error(download_mock, propose_mock, cleanup_mock, client):
                 "token": "abcdef",
                 "title": "Running package-badges on monorepo",
             },
-            "proposal": {"message": "Added package badges"},
+            "proposal": {"title": "Added package badges"},
         }
     )
 
@@ -173,3 +196,173 @@ def test_propose_error(download_mock, propose_mock, cleanup_mock, client):
             }
         }
     )
+
+
+@patch("automa.bot.AsyncCodeResource.cleanup")
+@patch("automa.bot.AsyncCodeResource.propose")
+@patch("automa.bot.AsyncCodeResource.download", return_value=fixture_code)
+@patch("app.routes.hooks.automa.update", return_value=[cargo_pkg_fixture])
+def test_propose_with_single_cargo(
+    update_mock, download_mock, propose_mock, cleanup_mock, client
+):
+    """Test the Automa webhook endpoint with a valid signature."""
+
+    response = call_with_fixture(client, "task.json")
+
+    # Returns 200 OK
+    assert response.status_code == 200
+
+    # Has empty body
+    assert response.content == b""
+
+    # Downloads the code
+    download_mock.assert_called_once()
+
+    # Calls update once
+    update_mock.assert_called_once()
+
+    # Proposes the code
+    propose_mock.assert_called_once_with(
+        {
+            "task": {
+                "id": 1,
+                "token": "abcdef",
+                "title": "Running package-badges on monorepo",
+            },
+            "proposal": {
+                "title": "Added package badges for `pkg1`",
+                "body": "Added package badges for the following packages:\n\n- `pkg1` (cargo)",
+            },
+        }
+    )
+
+    # Cleans up the code
+    cleanup_mock.assert_called_once()
+
+
+@patch("automa.bot.AsyncCodeResource.cleanup")
+@patch("automa.bot.AsyncCodeResource.propose")
+@patch("automa.bot.AsyncCodeResource.download", return_value=fixture_code)
+@patch("app.routes.hooks.automa.update", return_value=[npm_pkg_fixture])
+def test_propose_with_single_npm(
+    update_mock, download_mock, propose_mock, cleanup_mock, client
+):
+    """Test the Automa webhook endpoint with a valid signature."""
+
+    response = call_with_fixture(client, "task.json")
+
+    # Returns 200 OK
+    assert response.status_code == 200
+
+    # Has empty body
+    assert response.content == b""
+
+    # Downloads the code
+    download_mock.assert_called_once()
+
+    # Calls update once
+    update_mock.assert_called_once()
+
+    # Proposes the code
+    propose_mock.assert_called_once_with(
+        {
+            "task": {
+                "id": 1,
+                "token": "abcdef",
+                "title": "Running package-badges on monorepo",
+            },
+            "proposal": {
+                "title": "Added package badges for `pkg2`",
+                "body": "Added package badges for the following packages:\n\n- `pkg2` (npm)",
+            },
+        }
+    )
+
+    # Cleans up the code
+    cleanup_mock.assert_called_once()
+
+
+@patch("automa.bot.AsyncCodeResource.cleanup")
+@patch("automa.bot.AsyncCodeResource.propose")
+@patch("automa.bot.AsyncCodeResource.download", return_value=fixture_code)
+@patch("app.routes.hooks.automa.update", return_value=[pypi_pkg_fixture])
+def test_propose_with_single_pypi(
+    update_mock, download_mock, propose_mock, cleanup_mock, client
+):
+    """Test the Automa webhook endpoint with a valid signature."""
+
+    response = call_with_fixture(client, "task.json")
+
+    # Returns 200 OK
+    assert response.status_code == 200
+
+    # Has empty body
+    assert response.content == b""
+
+    # Downloads the code
+    download_mock.assert_called_once()
+
+    # Calls update once
+    update_mock.assert_called_once()
+
+    # Proposes the code
+    propose_mock.assert_called_once_with(
+        {
+            "task": {
+                "id": 1,
+                "token": "abcdef",
+                "title": "Running package-badges on monorepo",
+            },
+            "proposal": {
+                "title": "Added package badges for `pkg3`",
+                "body": "Added package badges for the following packages:\n\n- `pkg3` (pypi)",
+            },
+        }
+    )
+
+    # Cleans up the code
+    cleanup_mock.assert_called_once()
+
+
+@patch("automa.bot.AsyncCodeResource.cleanup")
+@patch("automa.bot.AsyncCodeResource.propose")
+@patch("automa.bot.AsyncCodeResource.download", return_value=fixture_code)
+@patch(
+    "app.routes.hooks.automa.update", return_value=[cargo_pkg_fixture, npm_pkg_fixture]
+)
+def test_propose_with_multiple(
+    update_mock, download_mock, propose_mock, cleanup_mock, client
+):
+    """Test the Automa webhook endpoint with a valid signature."""
+
+    response = call_with_fixture(client, "task.json")
+
+    # Returns 200 OK
+    assert response.status_code == 200
+
+    # Has empty body
+    assert response.content == b""
+
+    # Downloads the code
+    download_mock.assert_called_once()
+
+    # Calls update once
+    update_mock.assert_called_once()
+
+    # Proposes the code
+    propose_mock.assert_called_once_with(
+        {
+            "task": {
+                "id": 1,
+                "token": "abcdef",
+                "title": "Running package-badges on monorepo",
+            },
+            "proposal": {
+                "title": "Added package badges",
+                "body": "Added package badges for the following packages:\n\n- `pkg1` (cargo)\n- `pkg2` (npm)",
+            },
+        }
+    )
+
+    # Cleans up the code
+    cleanup_mock.assert_called_once()

@@ -22,7 +22,7 @@ formats = [
 ]
 
 
-def update(folder: str):
+def update(folder: str) -> List[Package]:
     """
     Find all packages inside the given folder for all supported package managers
     and edit their READMEs to add badges related to package manager.
@@ -30,6 +30,8 @@ def update(folder: str):
     Args:
         folder: The root folder to search in
     """
+    changed_packages = []
+
     # Walk through the directory structure
     for root, _, files in os.walk(folder):
         # Check each ecosystem
@@ -45,9 +47,10 @@ def update(folder: str):
 
             readme_path = find_readme(root, files)
 
-            if readme_path:
-                # Add badge to README
-                modify_readme(eco, package_info, readme_path)
+            if readme_path and modify_readme(eco, package_info, readme_path):
+                changed_packages.append(package_info)
+
+    return changed_packages
 
 
 def find_readme(directory: str, files: List[str]) -> Optional[Path]:
@@ -62,7 +65,9 @@ def find_readme(directory: str, files: List[str]) -> Optional[Path]:
     return Path(directory) / matching_file if matching_file else None
 
 
-def modify_readme(ecosystem: Ecosystem, package: Package, readme_path: Path):
+def modify_readme(ecosystem: Ecosystem, package: Package, readme_path: Path) -> bool:
+    is_changed = False
+
     try:
         with open(readme_path, "r") as f:
             content = f.read()
@@ -82,9 +87,13 @@ def modify_readme(ecosystem: Ecosystem, package: Package, readme_path: Path):
         # Use the format handler to modify the content with badges
         new_content = format_handler.modify_content(content, badges)
 
+        # Update the is_changed flag if content has changed
+        is_changed = new_content != content
+
         # Write the updated content back to the file
         with open(readme_path, "w") as f:
             f.write(new_content)
+
     except Exception as e:
         logging.error(
             f"Error updating README: {e}",
@@ -94,3 +103,5 @@ def modify_readme(ecosystem: Ecosystem, package: Package, readme_path: Path):
                 "readme": readme_path,
             },
         )
+
+    return is_changed

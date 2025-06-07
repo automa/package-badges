@@ -12,7 +12,7 @@ class PyPI(Ecosystem):
     def __init__(self):
         super().__init__("pypi", "pyproject.toml")
 
-    def parse(self, root: str, manifest_path: Path) -> Optional[Package]:
+    def _parse(self, root: str, manifest_path: Path) -> Optional[Package]:
         try:
             with open(manifest_path, "rb") as f:
                 pyproject_data = tomllib.load(f)

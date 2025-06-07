@@ -7,7 +7,7 @@ requires-python = ">=3.11"
 classifiers = ["Private :: Do Not Upload"]
 
 dependencies = [
-    "automa-bot~=0.1.4",
+    "automa-bot~=0.2.1",
     "fastapi-cli~=0.0.7",
     "fastapi-file-router>=0.1.17",
     "fastapi~=0.115.11",

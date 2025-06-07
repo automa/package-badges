@@ -12,7 +12,7 @@ class Cargo(Ecosystem):
     def __init__(self):
         super().__init__("cargo", "Cargo.toml")
 
-    def parse(self, root: str, manifest_path: Path) -> Optional[Package]:
+    def _parse(self, root: str, manifest_path: Path) -> Optional[Package]:
         try:
             with open(manifest_path, "rb") as f:
                 cargo_data = tomllib.load(f)

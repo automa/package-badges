@@ -1,5 +1,6 @@
 import json
 import logging
+from typing import List
 
 from automa.bot import AsyncAutoma
 from automa.bot.webhook import verify_webhook
@@ -7,6 +8,8 @@ from fastapi import APIRouter, Request, Response
 from opentelemetry.semconv.attributes.http_attributes import (
     HTTP_REQUEST_HEADER_TEMPLATE,
 )
+
+from app.update.ecosystems.ecosystem import Package
 
 from ...env import env
 from ...update import update
@@ -43,15 +46,13 @@ async def automa_hook(request: Request):
     folder = await automa.code.download(body["data"])
 
     try:
-        update(folder)
+        changed_packages = update(folder.path)
 
         # Propose code
         await automa.code.propose(
             {
                 **body["data"],
-                "proposal": {
-                    "message": "Added package badges",
-                },
+                "proposal": generate_pr_fields(changed_packages),
             }
         )
     finally:
@@ -59,3 +60,21 @@ async def automa_hook(request: Request):
         await automa.code.cleanup(body["data"])
 
     return Response(status_code=200)
+
+
+def generate_pr_fields(changed_packages: List[Package]) -> dict:
+    """Generate PR fields from changed packages."""
+    title = "Added package badges"
+
+    if len(changed_packages) == 1:
+        title = f"Added package badges for `{changed_packages[0].name}`"
+
+    result = {"title": title}
+
+    if len(changed_packages):
+        list = "\n".join(
+            f"- `{pkg.name}` ({pkg.ecosystem})" for pkg in changed_packages
+        )
+        result["body"] = f"Added package badges for the following packages:\n\n{list}"
+
+    return result

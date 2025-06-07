@@ -40,17 +40,16 @@ wheels = [
 
 [[package]]
 name = "automa-bot"
-version = "0.1.4"
+version = "0.2.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
-    { name = "gitpython" },
     { name = "httpx" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/68/c2/4ce33c0362c1459cb4d22f926b3a7c603b5e022dd849c14cf4e52d769023/automa_bot-0.1.4.tar.gz", hash = "sha256:cb82125f093461e9489947b1091b1427586b4c055c8dc5ad4a9f43ad4ab0d9c0", size = 7123, upload-time = "2025-05-30T15:02:23.279Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/cf/6f/eac984153d4bf73de025e49c161935f843660d93dd9133d73366d89f32f9/automa_bot-0.2.1.tar.gz", hash = "sha256:8f832c0e80ff1fec63388cadf3747127c0c03d36efbfde466bf1063b522977b1", size = 7481, upload-time = "2025-06-06T19:34:01.605Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/79/ac/1a082a94351fa4f6a797e47981cd4982092344ad74b4e0101a50d0006dfb/automa_bot-0.1.4-py3-none-any.whl", hash = "sha256:70b2b632929beeac05af8055d89d92c1debe25a3f4cc383e056cd8377352f902", size = 8142, upload-time = "2025-05-30T15:02:21.764Z" },
+    { url = "https://files.pythonhosted.org/packages/7a/32/2c31b19370270f88ef306612548414002e6bfb4d61d9ab46cd7b7a3e1d6d/automa_bot-0.2.1-py3-none-any.whl", hash = "sha256:c52b46497bf535c79991e106973875653e0d7e6da7dcfc5905c473a0cc30a450", size = 8317, upload-time = "2025-06-06T19:34:00.17Z" },
 ]
 
 [[package]]
@@ -185,30 +184,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/84/da/a52b220d21f4e4da0dcd1af3fe71c46446f4631014e8423a2c8119d766a4/fastapi_file_router-0.1.17.tar.gz", hash = "sha256:f3a6f973762b1fbb392943aacd767caaa83d036e6000e55ca360d0ffbe0e9605", size = 6390, upload-time = "2025-03-24T09:22:43.683Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/68/1a/7757f27c57365a5240e9fcc63fd0821ac40480752824fc690330c245522c/fastapi_file_router-0.1.17-py3-none-any.whl", hash = "sha256:bc605b526613ec0dc48bacdba304883e0873dfb1d11e75b72a9153dd5b09950d", size = 4551, upload-time = "2025-03-24T09:22:42.524Z" },
-]
-
-[[package]]
-name = "gitdb"
-version = "4.0.12"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "smmap" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/72/94/63b0fc47eb32792c7ba1fe1b694daec9a63620db1e313033d18140c2320a/gitdb-4.0.12.tar.gz", hash = "sha256:5ef71f855d191a3326fcfbc0d5da835f26b13fbcba60c32c21091c349ffdb571", size = 394684, upload-time = "2025-01-02T07:20:46.413Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/a0/61/5c78b91c3143ed5c14207f463aecfc8f9dbb5092fb2869baf37c273b2705/gitdb-4.0.12-py3-none-any.whl", hash = "sha256:67073e15955400952c6565cc3e707c554a4eea2e428946f7a4c162fab9bd9bcf", size = 62794, upload-time = "2025-01-02T07:20:43.624Z" },
-]
-
-[[package]]
-name = "gitpython"
-version = "3.1.44"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "gitdb" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/c0/89/37df0b71473153574a5cdef8f242de422a0f5d26d7a9e231e6f169b4ad14/gitpython-3.1.44.tar.gz", hash = "sha256:c87e30b26253bf5418b01b0660f818967f3c503193838337fe5e573331249269", size = 214196, upload-time = "2025-01-02T07:32:43.59Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/1d/9a/4114a9057db2f1462d5c8f8390ab7383925fe1ac012eaa42402ad65c2963/GitPython-3.1.44-py3-none-any.whl", hash = "sha256:9e0e10cda9bed1ee64bc9a6de50e7e38a9c9943241cd7f585f6df3ed28011110", size = 207599, upload-time = "2025-01-02T07:32:40.731Z" },
 ]
 
 [[package]]
@@ -546,7 +521,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "automa-bot", specifier = "~=0.1.4" },
+    { name = "automa-bot", specifier = "~=0.2.1" },
     { name = "fastapi", specifier = "~=0.115.11" },
     { name = "fastapi-cli", specifier = "~=0.0.7" },
     { name = "fastapi-file-router", specifier = ">=0.1.17" },
@@ -839,15 +814,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/58/15/8b3609fd3830ef7b27b655beb4b4e9c62313a4e8da8c676e142cc210d58e/shellingham-1.5.4.tar.gz", hash = "sha256:8dbca0739d487e5bd35ab3ca4b36e11c4078f3a234bfce294b0a0291363404de", size = 10310, upload-time = "2023-10-24T04:13:40.426Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/e0/f9/0595336914c5619e5f28a1fb793285925a8cd4b432c9da0a987836c7f822/shellingham-1.5.4-py2.py3-none-any.whl", hash = "sha256:7ecfff8f2fd72616f7481040475a65b2bf8af90a56c89140852d1120324e8686", size = 9755, upload-time = "2023-10-24T04:13:38.866Z" },
-]
-
-[[package]]
-name = "smmap"
-version = "5.0.2"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/44/cd/a040c4b3119bbe532e5b0732286f805445375489fceaec1f48306068ee3b/smmap-5.0.2.tar.gz", hash = "sha256:26ea65a03958fa0c8a1c7e8c7a58fdc77221b8910f6be2131affade476898ad5", size = 22329, upload-time = "2025-01-02T07:14:40.909Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/04/be/d09147ad1ec7934636ad912901c5fd7667e1c858e19d355237db0d0cd5e4/smmap-5.0.2-py3-none-any.whl", hash = "sha256:b30115f0def7d7531d22a0fb6502488d879e75b260a9db4d0819cfb25403af5e", size = 24303, upload-time = "2025-01-02T07:14:38.724Z" },
 ]
 
 [[package]]

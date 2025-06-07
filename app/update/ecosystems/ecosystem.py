@@ -9,6 +9,7 @@ class Package:
         self.path = path
         self.name = name
         self.version = version
+        self.ecosystem: Optional[str] = None
 
 
 class Badge:
@@ -32,7 +33,24 @@ class Ecosystem:
         return self.manifest_file in files
 
     def parse(self, root: str, manifest_path: Path) -> Optional[Package]:
-        """Parse the manifest file and return package info."""
+        """
+        Parse the manifest file and return package info.
+
+        Args:
+            root: The root directory of the package
+            manifest_path: The path to the manifest file
+
+        Returns:
+            A Package object with the parsed information, or None if parsing fails
+        """
+        package = self._parse(root, manifest_path)
+
+        if package:
+            package.ecosystem = self.name
+
+        return package
+
+    def _parse(self, root: str, manifest_path: Path) -> Optional[Package]:
         raise NotImplementedError("Subclasses must implement parse method")
 
     def badges(self, package: Package) -> List[Badge]:
