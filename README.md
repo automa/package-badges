@@ -56,10 +56,13 @@ The bot automatically skips private packages by checking:
 - **Cargo**: `publish` field set to `false` or a list that does not include `crates-io` in `Cargo.toml`.
 
 ## Contributing
+
 Contributions and feedback are welcome! Feel free to open an issue or submit a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md) for more details. Here is a list of [Contributors](https://github.com/automa/package-badges/contributors).
 
 ## LICENSE
+
 MIT
 
 ## Bug Reports
+
 Report [here](https://github.com/automa/package-badges/issues).
