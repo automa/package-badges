@@ -1,8 +1,8 @@
 # package-badges
 
-**package-badges** is a [deterministic](https://docs.automa.app/agents/types#deterministic) & [scheduled](https://docs.automa.app/agents/types#scheduled) bot for [**Automa**](https://automa.app) that automatically adds registry badges ([NPM](https://npmjs.org), [PyPI](https://pypi.org), [Cargo](https://crates.io)) to the README files of public packages.
+This is a [deterministic](https://docs.automa.app/agents/types#deterministic) & [scheduled](https://docs.automa.app/agents/types#scheduled) bot for [**Automa**](https://automa.app) that automatically adds registry badges ([NPM](https://npmjs.org), [PyPI](https://pypi.org), [Cargo](https://crates.io)) to the README files of public packages.
 
-## Features
+#### Features
 
 - Multiple registry badges:
   - **NPM**: version, license, and monthly downloads badges
@@ -16,9 +16,9 @@
 
 [![Install on Automa](https://automa.app/install.svg)](https://automa.app/agents/badges/package-badges)
 
-## Self-Hosting
+### Self-Hosting
 
-This bot can be self-hosted. Follow these steps to get it running.
+This bot can be self-hosted. You can follow these steps to get it running.
 
 #### Prerequisites
 
@@ -47,7 +47,7 @@ uv run fastapi run --port 8000
 
 The bot scans your repository for package manifest files (`package.json`, `pyproject.toml`, `Cargo.toml`). For each public package it finds, it generates a set of badges and inserts them into the corresponding `README.md` or `README.rst` file.
 
-### Private Package Detection
+#### Private Package Detection
 
 The bot automatically skips private packages by checking:
 
