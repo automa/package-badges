@@ -14,7 +14,7 @@ This is a [deterministic](https://docs.automa.app/agents/types#deterministic) & 
 
 ## Getting Started
 
-[![Install on Automa](https://automa.app/install.svg)](https://automa.app/agents/badges/package-badges)
+[![Install on Automa](https://automa.app/install.svg)](https://console.automa.app/$/bots/new/badges/package-badges)
 
 ### Self-Hosting
 
