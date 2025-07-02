@@ -40,16 +40,16 @@ wheels = [
 
 [[package]]
 name = "automa-bot"
-version = "0.2.1"
+version = "0.2.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
     { name = "httpx" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cf/6f/eac984153d4bf73de025e49c161935f843660d93dd9133d73366d89f32f9/automa_bot-0.2.1.tar.gz", hash = "sha256:8f832c0e80ff1fec63388cadf3747127c0c03d36efbfde466bf1063b522977b1", size = 7481, upload-time = "2025-06-06T19:34:01.605Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b0/11/9b30d90ef8fef888ed0a527c848ef1d5271b107e3f382da1f2b137ba9fa4/automa_bot-0.2.3.tar.gz", hash = "sha256:b218a48b3be66102e73a22a8fb2158efec5f44bf3b6f1cdd3b162ecb38a67acf", size = 7908, upload-time = "2025-07-02T14:31:46.71Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7a/32/2c31b19370270f88ef306612548414002e6bfb4d61d9ab46cd7b7a3e1d6d/automa_bot-0.2.1-py3-none-any.whl", hash = "sha256:c52b46497bf535c79991e106973875653e0d7e6da7dcfc5905c473a0cc30a450", size = 8317, upload-time = "2025-06-06T19:34:00.17Z" },
+    { url = "https://files.pythonhosted.org/packages/5d/f9/a2dfa8e519d0a8a3b332d50f381cedb17e0b51d08e2ebdc9a21145a93014/automa_bot-0.2.3-py3-none-any.whl", hash = "sha256:31cb23abecf3091d2809dbdc742aff8dbe93d259bf8bb2e98ffb507f600b0464", size = 8849, upload-time = "2025-07-02T14:31:45.335Z" },
 ]
 
 [[package]]
@@ -521,7 +521,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "automa-bot", specifier = "~=0.2.1" },
+    { name = "automa-bot", specifier = "~=0.2.3" },
     { name = "fastapi", specifier = "~=0.115.11" },
     { name = "fastapi-cli", specifier = "~=0.0.7" },
     { name = "fastapi-file-router", specifier = ">=0.1.17" },
