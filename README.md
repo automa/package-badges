@@ -1,6 +1,6 @@
 # package-badges
 
-This is a [deterministic](https://docs.automa.app/agents/types#deterministic) & [scheduled](https://docs.automa.app/agents/types#scheduled) bot for [**Automa**](https://automa.app) that automatically adds registry badges ([NPM](https://npmjs.org), [PyPI](https://pypi.org), [Cargo](https://crates.io)) to the README files of public packages.
+This is a [deterministic](https://docs.automa.app/bots/types#deterministic) & [scheduled](https://docs.automa.app/bots/types#scheduled) [bot](https://docs.automa.app/bots/types#bot) for [**Automa**](https://automa.app) that automatically adds registry badges ([NPM](https://npmjs.org), [PyPI](https://pypi.org), [Cargo](https://crates.io)) to the README files of public packages.
 
 #### Features
 
@@ -25,9 +25,9 @@ This bot can be self-hosted. You can follow these steps to get it running.
 - Have [`git`](https://git-scm.com/) installed.
 - Have [`uv`](https://docs.astral.sh/uv/) installed.
 
-#### Automa agent
+#### Automa bot
 
-[Create an agent](https://docs.automa.app/agent-development/create-agent) of [scheduled](https://docs.automa.app/agents/types#scheduled) type on [Automa](https://automa.app) (Cloud or Self-hosted) and point its webhook to your planned server (e.g., `http://your-server-ip:8000/hooks/automa`). Copy the **webhook secret** after it is created.
+[Create a bot](https://docs.automa.app/bot-development/create-bot) of [scheduled](https://docs.automa.app/bots/types#scheduled) type on [Automa](https://automa.app) (Cloud or Self-hosted) and point its webhook to your planned server (e.g., `http://your-server-ip:8000/hooks/automa`). Copy the **webhook secret** after it is created.
 
 #### Starting the server
 
