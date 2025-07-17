@@ -4,7 +4,7 @@
 
 - Have [`git`](https://git-scm.com/) installed.
 - Have [`uv`](https://docs.astral.sh/uv/) installed.
-- Have a [scheduled](https://docs.automa.app/agents/types#scheduled) bot in either [Automa](https://automa.app) (Cloud or Self-hosted) or in [automa/monorepo](https://github.com/automa/monorepo) local setup.
+- Have a [scheduled](https://docs.automa.app/bots/types#scheduled) bot in either [Automa](https://automa.app) (Cloud or Self-hosted) or in [automa/monorepo](https://github.com/automa/monorepo) local setup.
 
 ## Setup environment variables
 
