@@ -1,6 +1,6 @@
 # package-badges
 
-This is a [deterministic](https://docs.automa.app/bots/types#deterministic) & [scheduled](https://docs.automa.app/bots/types#scheduled) [bot](https://docs.automa.app/bots/types#bot) for [**Automa**](https://automa.app) that automatically adds registry badges ([NPM](https://npmjs.org), [PyPI](https://pypi.org), [Cargo](https://crates.io)) to the README files of public packages.
+This is a [deterministic](https://docs.automa.app/bots/types#deterministic) & [scheduled](https://docs.automa.app/bots/types#scheduled) [bot](https://docs.automa.app/bots/types#non-agent) for [**Automa**](https://automa.app) that automatically adds registry badges ([NPM](https://npmjs.org), [PyPI](https://pypi.org), [Cargo](https://crates.io)) to the README files of public packages.
 
 #### Features
 
