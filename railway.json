@@ -5,6 +5,7 @@
   },
   "deploy": {
     "startCommand": "uv run fastapi run --port $PORT",
+    "healthcheckPath": "/health/live",
     "restartPolicyType": "ALWAYS"
   }
 }
