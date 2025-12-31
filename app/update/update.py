@@ -22,7 +22,7 @@ formats = [
 ]
 
 
-def update(folder: str) -> List[Package]:
+def update(folder: str | Path) -> List[Package]:
     """
     Find all packages inside the given folder for all supported package managers
     and edit their READMEs to add badges related to package manager.
