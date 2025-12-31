@@ -17,9 +17,7 @@ def temp_dir():
         yield dir_path
 
 
-def run_fixture(
-    temp_dir: TemporaryDirectory[str], fixture_name: str, snapshot: SnapshotAssertion
-) -> None:
+def run_fixture(temp_dir: str, fixture_name: str, snapshot: SnapshotAssertion) -> None:
     """Run test on a specific fixture."""
     # Setup the fixture
     source = Path(__file__).parent / "fixtures" / fixture_name
@@ -45,97 +43,89 @@ def run_fixture(
     assert result == snapshot
 
 
-def test_empty(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_empty(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "empty", snapshot)
 
 
-def test_no_readme(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_no_readme(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "no_readme", snapshot)
 
 
-def test_npm(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_npm(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "npm", snapshot)
 
 
-def test_npm_private(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_npm_private(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "npm_private", snapshot)
 
 
-def test_cargo(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_cargo(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "cargo", snapshot)
 
 
-def test_cargo_private(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_cargo_private(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "cargo_private", snapshot)
 
 
-def test_cargo_publish_empty(
-    temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion
-):
+def test_cargo_publish_empty(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "cargo_publish_empty", snapshot)
 
 
-def test_cargo_publish_crates_io(
-    temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion
-):
+def test_cargo_publish_crates_io(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "cargo_publish_crates_io", snapshot)
 
 
-def test_cargo_publish_registry(
-    temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion
-):
+def test_cargo_publish_registry(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "cargo_publish_registry", snapshot)
 
 
-def test_cargo_publish_both_registries(
-    temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion
-):
+def test_cargo_publish_both_registries(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "cargo_publish_both_registries", snapshot)
 
 
-def test_pypi(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_pypi(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "pypi", snapshot)
 
 
-def test_pypi_private(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_pypi_private(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "pypi_private", snapshot)
 
 
-def test_monorepo(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_monorepo(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "monorepo", snapshot)
 
 
-def test_md_empty(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_md_empty(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "md_empty", snapshot)
 
 
-def test_md_no_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_md_no_heading(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "md_no_heading", snapshot)
 
 
-def test_md_h3_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_md_h3_heading(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "md_h3_heading", snapshot)
 
 
-def test_rst(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_rst(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "rst", snapshot)
 
 
-def test_rst_empty(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_rst_empty(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "rst_empty", snapshot)
 
 
-def test_rst_no_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_rst_no_heading(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "rst_no_heading", snapshot)
 
 
-def test_rst_h1_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_rst_h1_heading(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "rst_h1_heading", snapshot)
 
 
-def test_rst_h3_heading(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_rst_h3_heading(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "rst_h3_heading", snapshot)
 
 
-def test_existing_badge(temp_dir: TemporaryDirectory[str], snapshot: SnapshotAssertion):
+def test_existing_badge(temp_dir: str, snapshot: SnapshotAssertion):
     run_fixture(temp_dir, "existing_badge", snapshot)

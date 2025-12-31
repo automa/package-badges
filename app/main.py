@@ -11,8 +11,8 @@ from .plugins.telemetry import TelemetryMiddleware
 
 app = FastAPI(openapi_url=None if isProduction else "/openapi.json")
 
-app.add_middleware(TelemetryMiddleware)
-app.add_middleware(ErrorMiddleware)
-app.add_middleware(SecurityMiddleware)
+app.add_middleware(TelemetryMiddleware)  # ty:ignore[invalid-argument-type]
+app.add_middleware(ErrorMiddleware)  # ty:ignore[invalid-argument-type]
+app.add_middleware(SecurityMiddleware)  # ty:ignore[invalid-argument-type]
 
 load_routes(app, Path("./app/routes"), auto_tags=False)
