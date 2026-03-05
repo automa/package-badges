@@ -9,7 +9,7 @@ from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.sdk._logs import LoggerProvider, LoggingHandler
 from opentelemetry.sdk._logs.export import (
     BatchLogRecordProcessor,
-    ConsoleLogExporter,
+    ConsoleLogRecordExporter,
     SimpleLogRecordProcessor,
 )
 from opentelemetry.sdk.metrics import MeterProvider
@@ -60,11 +60,11 @@ def initTelemetry():
     if not isTest:
         if isProduction:
             logger_provider.add_log_record_processor(
-                BatchLogRecordProcessor(ConsoleLogExporter())
+                BatchLogRecordProcessor(ConsoleLogRecordExporter())
             )
         else:
             logger_provider.add_log_record_processor(
-                SimpleLogRecordProcessor(ConsoleLogExporter())
+                SimpleLogRecordProcessor(ConsoleLogRecordExporter())
             )
 
     logging_handler = LoggingHandler(
